@@ -6,11 +6,14 @@ Parameters:
     Type: AWS::EC2::Subnet::Id
   Ec2ImageId:
     Type: String
-    Default: ami-0e79b2db3e5f19265
-    Description: Enter appropriate AMI ID in your region. Tested with "Deep Learning AMI GPU PyTorch 1.13.1 (Ubuntu 20.04) 20230510" in us-east-1.
+    Default: ami-09e6f55b0eefaa8ef
+    Description: Enter appropriate AMI ID in your region. Tested with "Deep Learning AMI GPU PyTorch 1.13.1 (Ubuntu 20.04) 20230510" in ap-northeast-1.
   Ec2InstanceType:
     Type: String
     Default: g4dn.xlarge
+  EC2InstanceProfileName:
+    Type: String
+    Description: Name of the existing IAM instance profile whic has access to Systems Manager (arn:aws:iam::<account>:instance-profile/<EC2InstanceProfileName>)
   SDWebUIVersion:
     Type: String
     Description: Branch of AUTOMATIC1111/stable-diffusion-webui
@@ -25,6 +28,7 @@ Resources:
     Properties:
       InstanceType: !Ref Ec2InstanceType
       ImageId: !Ref Ec2ImageId
+      IamInstanceProfile: !Ref EC2InstanceProfileName
       SubnetId: !Ref SubnetId
       BlockDeviceMappings:
         - DeviceName: /dev/sda1
@@ -54,13 +58,13 @@ Resources:
             MIME-Version: 1.0
             Content-Transfer-Encoding: 7bit
             Content-Disposition: attachment; filename="userdata.txt"
-            
+
             #!/bin/bash
 
             # Install packages
             sudo apt update
             sudo add-apt-repository ppa:deadsnakes/ppa -y
-            sudo apt -y install wget git 
+            sudo apt -y install wget git
             sudo apt -y install python3 python-is-python3 python3-pip python3-venv
             sudo apt -y install python3.10 python3.10-distutils python3.10-venv python3.10-tk
             curl -sS https://bootstrap.pypa.io/get-pip.py | python3.10
