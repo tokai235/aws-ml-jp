@@ -71,6 +71,9 @@ Resources:
             python3.10 -m pip install --upgrade pip
             sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
 
+            # Cannot locate TCMalloc (improves CPU memory usage) への対応
+            sudo apt install --no-install-recommends google-perftools
+
             # Launch Kohya
             cd /home/ubuntu
             sudo -u ubuntu git clone https://github.com/bmaltais/kohya_ss.git -b ${KohyaSSVersion}
