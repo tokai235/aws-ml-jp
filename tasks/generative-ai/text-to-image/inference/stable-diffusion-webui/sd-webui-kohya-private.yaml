@@ -74,6 +74,10 @@ Resources:
             # Cannot locate TCMalloc (improves CPU memory usage) への対応
             sudo apt install --no-install-recommends google-perftools
 
+            # TypeError: AsyncConnectionPool.__init__() got an unexpected keyword argument 'socket_options' への対応
+            source venv/bin/activate
+            pip install httpx==0.24.1
+
             # Launch Kohya
             cd /home/ubuntu
             sudo -u ubuntu git clone https://github.com/bmaltais/kohya_ss.git -b ${KohyaSSVersion}
