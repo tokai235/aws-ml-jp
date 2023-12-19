@@ -1,0 +1,6 @@
+- WebUI 起動時にエラーが発生するため、以下を参考に`default.py`の一部をコメントアウトした
+  - https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/13847
+
+```
+TypeError: AsyncConnectionPool.__init__() got an unexpected keyword argument 'socket_options'
+```
