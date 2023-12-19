@@ -76,7 +76,7 @@ Resources:
 
             # TypeError: AsyncConnectionPool.__init__() got an unexpected keyword argument 'socket_options' への対応
             source venv/bin/activate
-            pip install httpx==0.24.1
+            python3.10 -m pip install httpx==0.24.1
 
             # Launch Kohya
             cd /home/ubuntu
